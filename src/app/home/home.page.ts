@@ -74,15 +74,12 @@ export class HomePage {
           }
         }),
         catchError((err: any) => {
-          console.log(err);
-
           this.error = err.error.status_message;
           return [];
         })
       )
       .subscribe({
         next: (response) => {
-          console.log(response);
           this.movies = [...this.movies, ...response.results];
           if (event) {
             event.target.disabled = response.total_pages === this.currentPage;
