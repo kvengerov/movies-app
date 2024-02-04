@@ -16,11 +16,11 @@
         [style.background-size]="'cover'"
       ></div>
         <ion-card-header>
-          <ion-card-title>{{ movie.title }}</ion-card-title>
+          <ion-card-title>{{ movie?.title }}</ion-card-title>
           <ion-card-subtitle>{{ movie.tagline }}</ion-card-subtitle>
           <ion-text color="tertiary">
             @for (genre of movie.genres; track genre.id; let isLast = $last;) {
-              <span>{{ genre.name }}{{ isLast ? '' : '.' }}</span>
+              <span>{{ genre.name }}{{ isLast ? '' : ' ' }}</span>
             }
           </ion-text>
         </ion-card-header>
