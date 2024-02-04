@@ -34,7 +34,7 @@ export class MovieService {
     const url = this.createUrl('/movie/popular', { page });
     return this.http.get<ApiResponse>(url)
       .pipe(
-        delay(2000)
+        delay(3000)
       );
   }
 
