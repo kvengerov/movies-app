@@ -15,7 +15,7 @@ import {
   IonLabel,
   IonBadge,
   IonInfiniteScroll,
-  IonInfiniteScrollContent
+  IonInfiniteScrollContent,
 } from '@ionic/angular/standalone';
 import { catchError, finalize } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -65,7 +65,8 @@ export class HomeDeferPage {
       this.isLoading = true;
     }
 
-    this.moveService.getPopularMovies(this.currentPage)
+    this.moveService
+      .getPopularMovies(this.currentPage)
       .pipe(
         finalize(() => {
           this.isLoading = false;
@@ -76,7 +77,7 @@ export class HomeDeferPage {
         catchError((err: any) => {
           this.error = err.error.status_message;
           return [];
-        })
+        }),
       )
       .subscribe({
         next: (response) => {
@@ -84,7 +85,7 @@ export class HomeDeferPage {
           if (event) {
             event.target.disabled = response.total_pages === this.currentPage;
           }
-        }
+        },
       });
   }
 

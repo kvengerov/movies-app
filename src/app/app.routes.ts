@@ -12,10 +12,10 @@ export const routes: Routes = [
   },
   {
     path: 'details/:id',
-    loadComponent: () => import('./details/details.page').then( m => m.DetailsPage)
+    loadComponent: () => import('./details/details.page').then((m) => m.DetailsPage),
   },
   {
     path: 'home-defer',
-    loadComponent: () => import('./home-defer/home-defer.page').then( m => m.HomeDeferPage)
+    loadComponent: () => import('./home-defer/home-defer.page').then((m) => m.HomeDeferPage),
   },
 ];

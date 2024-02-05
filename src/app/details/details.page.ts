@@ -15,13 +15,13 @@ import {
   IonLabel,
   IonText,
   IonTitle,
-  IonToolbar
+  IonToolbar,
 } from '@ionic/angular/standalone';
 import { environment } from '../../environments/environment';
 import { MovieResult } from '../interfaces/movie.interface';
 import { MovieService } from '../services/movie.service';
-import { addIcons} from 'ionicons';
-import { cashOutline, calendarOutline} from 'ionicons/icons';
+import { addIcons } from 'ionicons';
+import { cashOutline, calendarOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-details',
@@ -46,7 +46,7 @@ import { cashOutline, calendarOutline} from 'ionicons/icons';
     IonItem,
     CurrencyPipe,
     DatePipe,
-  ]
+  ],
 })
 export class DetailsPage {
   private movieService = inject(MovieService);
@@ -55,7 +55,7 @@ export class DetailsPage {
 
   @Input()
   set id(movieId: string) {
-    this.movieService.getMovieDetails(movieId).subscribe(movie => {
+    this.movieService.getMovieDetails(movieId).subscribe((movie) => {
       this.movie.set(movie);
     });
   }

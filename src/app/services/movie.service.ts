@@ -7,18 +7,18 @@ import { ApiResponse, MovieResult } from '../interfaces/movie.interface';
 const BASE_URL = environment.apiUrl;
 const API_KEY = environment.apiKeys;
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MovieService {
   private http = inject(HttpClient);
-  constructor() { }
+  constructor() {}
 
   private createUrl(path: string, params: Record<string, any> = {}): string {
-    const url = new URL(`${environment.apiUrl}${path}`);
-    url.searchParams.set('api_key', environment.apiKeys);
+    const url = new URL(`${BASE_URL}${path}`);
+    url.searchParams.set('api_key', API_KEY);
     url.searchParams.set('language', 'en-US');
 
-    Object.keys(params).forEach(key => {
+    Object.keys(params).forEach((key) => {
       url.searchParams.set(key, String(params[key]));
     });
 
@@ -30,15 +30,12 @@ export class MovieService {
     return this.http.get<ApiResponse>(url);
   }
 
-  getPopularMovies(page: number = 1): Observable<ApiResponse>{
+  getPopularMovies(page: number = 1): Observable<ApiResponse> {
     const url = this.createUrl('/movie/popular', { page });
-    return this.http.get<ApiResponse>(url)
-      .pipe(
-        delay(3000)
-      );
+    return this.http.get<ApiResponse>(url).pipe(delay(3000));
   }
 
-  getMovieDetails(id: string): Observable<MovieResult>{
+  getMovieDetails(id: string): Observable<MovieResult> {
     const url = this.createUrl(`/movie/${id}`);
     return this.http.get<MovieResult>(url);
   }
